@@ -4,7 +4,7 @@
 
 pkgname="exodia-hooks"
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Pacman hooks for Exodia OS to fix various system files'
 url="https://github.com/Exodia-OS/exodia-packages"
 arch=('any')
@@ -22,9 +22,11 @@ source=(
   'exodia-os-release.hook'
   'exodia-reboot-required'
   'exodia-reboot-required.hook'
+  'exodia-hook-i3wm.hook'
 )
 
 sha512sums=(
+  'SKIP'
   'SKIP'
   'SKIP'
   'SKIP'

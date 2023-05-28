@@ -11,9 +11,9 @@
 Operation = Install
 Operation = Upgrade
 Type = Package
-Target = filesystem
+Target = i3-wm
 
 [Action]
-Description = Updating Exodia OS OS-Specific Configurations...
+Description = Removing i3-with-shmlog.desktop file...
 When = PostTransaction
-Exec = /usr/bin/exodia-hooks-runner os-release
+Exec = /usr/bin/exodia-hooks-misc fix-i3wm

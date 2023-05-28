@@ -1,22 +1,13 @@
 #!/bin/bash
 
-##########################################################################################################
-#																										 
-#    Copyright © 2022 To Cyb3rTh1eveZ																	 
-#																										 
-#     ██████╗██╗   ██╗██████╗ ██████╗ ██████╗ ████████╗██╗  ██╗ ██╗███████╗██╗   ██╗███████╗███████╗	 
-#    ██╔════╝╚██╗ ██╔╝██╔══██╗╚════██╗██╔══██╗╚══██╔══╝██║  ██║███║██╔════╝██║   ██║██╔════╝╚══███╔╝     
-#    ██║      ╚████╔╝ ██████╔╝ █████╔╝██████╔╝   ██║   ███████║╚██║█████╗  ██║   ██║█████╗    ███╔╝      
-#    ██║       ╚██╔╝  ██╔══██╗ ╚═══██╗██╔══██╗   ██║   ██╔══██║ ██║██╔══╝  ╚██╗ ██╔╝██╔══╝   ███╔╝       
-#    ╚██████╗   ██║   ██████╔╝██████╔╝██║  ██║   ██║   ██║  ██║ ██║███████╗ ╚████╔╝ ███████╗███████╗     
-#     ╚═════╝   ╚═╝   ╚═════╝ ╚═════╝ ╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═╝ ╚═╝╚══════╝  ╚═══╝  ╚══════╝╚══════╝     
-#																										 
-#																										 
-#																										 
-#    Copyright (C) Mahmoud Mohamed (00xWolf)  <https://github.com/mmsaeed509>								 
-#    LICENSE © GNU-GPL3																					 
-#																										 
-##########################################################################################################
+#####################################
+#                                   #
+#  @author      : 00xWolf           #
+#    GitHub    : @mmsaeed509       #
+#    Developer : Mahmoud Mohamed   #
+#  﫥  Copyright : Exodia OS         #
+#                                   #
+#####################################
 
 # Run `exodia-hooks` related commands. #
 
@@ -30,15 +21,15 @@ fix_lsb_release() {
     sed -i "$file" \
         -e 's|^DISTRIB_ID=.*$|DISTRIB_ID=exodia|' \
         -e 's|^DISTRIB_RELEASE=.*$|DISTRIB_RELEASE=rolling|' \
-        -e 's|^DISTRIB_DESCRIPTION=.*$|DISTRIB_DESCRIPTION=\"Exodia\"|'
+        -e 's|^DISTRIB_DESCRIPTION=.*$|DISTRIB_DESCRIPTION=\"Exodia OS\"|'
 }
 
 fix_os_release() {
     local file=/usr/lib/os-release
 
     sed -i "$file" \
-        -e 's|^NAME=.*$|NAME=\"Exodia\"|' \
-        -e 's|^PRETTY_NAME=.*$|PRETTY_NAME=\"Exodia\"|' \
+        -e 's|^NAME=.*$|NAME=\"Exodia OS\"|' \
+        -e 's|^PRETTY_NAME=.*$|PRETTY_NAME=\"Exodia OS\"|' \
         -e 's|^ID=.*$|ID=exodia|' \
         -e 's|^ID_LIKE=.*$|ID_LIKE=arch|' \
         -e 's|^BUILD_ID=.*$|BUILD_ID=rolling|' \

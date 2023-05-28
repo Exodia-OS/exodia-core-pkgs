@@ -4,7 +4,7 @@
 
 pkgname=exodia-install-scripts
 pkgver=1.0
-pkgrel=2
+pkgrel=3
 pkgdesc='Exodia OS Install Scripts'
 url="https://github.com/Exodia-OS/exodia-packages"
 arch=('any')
@@ -13,21 +13,34 @@ license=('GPL3')
 source=(
 
 	'chrooted_post_install.sh'
+	'chrooted_post_install_nvidia.sh'
 	'post_install.sh'
-
+	'post_install_nvidia.sh'
+	'main_fix_autologin.sh'
+	'main_post_install.sh'
+	
 )
 
 sha512sums=(
 
 	'SKIP'
 	'SKIP'
+	'SKIP'
+	'SKIP'
+	'SKIP'
+	'SKIP'
+
 )
 
 package() {
 
 	local bin=${pkgdir}/usr/bin
 	
-	install -Dm755 chrooted_post_install.sh 	${bin}/chrooted_post_install.sh
-	install -Dm755 post_install.sh 				${bin}/post_install.sh
-
+	install -Dm755 chrooted_post_install.sh 		${bin}/chrooted_post_install.sh
+	install -Dm755 chrooted_post_install_nvidia.sh 	${bin}/chrooted_post_install_nvidia.sh
+	install -Dm755 post_install.sh 					${bin}/post_install.sh
+	install -Dm755 post_install_nvidia.sh 			${bin}/post_install_nvidia.sh
+	install -Dm755 main_fix_autologin.sh 			${bin}/main_fix_autologin.sh
+	install -Dm755 main_post_install.sh 			${bin}/main_post_install.sh
+	
 }

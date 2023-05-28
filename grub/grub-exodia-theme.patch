@@ -1,6 +1,6 @@
 --- a/util/grub.d/10_linux.in
 +++ b/util/grub.d/10_linux.in
-@@ -309,7 +309,7 @@
+@@ -285,7 +285,7 @@
  	boot_device_id="$(grub_get_device_id "${GRUB_DEVICE}")"
      fi
      # TRANSLATORS: %s is replaced with an OS name
@@ -8,7 +8,7 @@
 +    echo "submenu '$(gettext_printf "Advanced options for %s" "${OS}" | grub_quote)' --class recovery \$menuentry_id_option 'gnulinux-advanced-$boot_device_id' {"
      is_top_level=false
    fi
-
+ 
 --- a/util/grub.d/30_os-prober.in
 +++ b/util/grub.d/30_os-prober.in
 @@ -152,7 +152,7 @@
@@ -50,9 +50,9 @@
  # the 'exec tail' line above.
 +
 +menuentry 'Reboot Computer' --class restart {
-+	reboot
++    reboot
 +}
 +
 +menuentry 'Shutdown Computer' --class shutdown {
-+	halt
++    halt
 +}
