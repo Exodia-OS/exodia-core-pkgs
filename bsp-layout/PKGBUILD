@@ -1,0 +1,42 @@
+#
+# Maintainer: Mahmoud Mohamed (00xWolf) <mmsaeed509@gmail.com> , <https://github.com/mmsaeed509>
+#
+
+pkgname=bsp-layout
+pkgver=0.0.10
+pkgrel=1
+pkgdesc="Dynamic layout management for bspwm with tall, wide, even, tiled, monocle"
+arch=('any')
+url="https://github.com/phenax/bsp-layout"
+license=('MIT')
+depends=('bash' 'bc')
+makedepends=('bash' 'git')
+provides=("${pkgname}")
+conflicts=("${pkgname}-git")
+# install=${pkgname}.install
+source=("${url}/archive/${pkgver}.tar.gz")
+md5sums=('SKIP')
+
+package() {
+
+  PREFIX=${pkgdir}/usr/local
+  MAN_PAGE_DIR=${PREFIX}/share/man/man1
+  SRC_PATH=${PREFIX}/lib/bsp-layout
+  BINARY_PATH=${PREFIX}/bin
+
+  mkdir -p "${PREFIX}" "${MAN_PAGE_DIR}" "${SRC_PATH}" "${BINARY_PATH}"
+
+  cd "${srcdir}/${pkgname}-${pkgver}"
+  cp -rf src/* ${SRC_PATH}
+
+  cp src/layout.sh ${BINARY_PATH}/bsp-layout
+
+  cp bsp-layout.1 ${MAN_PAGE_DIR}
+
+  # Manpage permissions #
+  chmod 644 ${MAN_PAGE_DIR}/bsp-layout.1
+	chmod 755 ${SRC_PATH}/*
+	chmod 755 ${BINARY_PATH}/bsp-layout
+
+}
+
