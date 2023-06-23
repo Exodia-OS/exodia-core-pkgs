@@ -84,7 +84,8 @@ remove_dwm() {
 	# List Of Packages To Remove #
 	_pkgs_to_remove=(
 		
-		'exodia-dwm-beta'
+		'exodia-dwm'
+		'exodia-dwm-predator'
 		'exodia-st' 
 	)
 
