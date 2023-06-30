@@ -2,9 +2,9 @@
 # Maintainer: Mahmoud Mohamed (00xWolf) <mmsaeed509@gmail.com> , <https://github.com/mmsaeed509>
 #
 
-pkgname=exodia-install-scripts
+pkgname=exodia-predator-install-scripts
 pkgver=1.0
-pkgrel=4
+pkgrel=1
 pkgdesc='Exodia OS Install Scripts'
 url="https://github.com/Exodia-OS/exodia-packages"
 arch=('any')

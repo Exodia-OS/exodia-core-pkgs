@@ -68,23 +68,23 @@ _remove_for_wm() {
 
 }
 
-# Remove Bspwm  #
-remove_bspwm() {
+# Remove Bspwm Predator #
+remove_bspwm_predator() {
 
 	# List Of Packages To Remove #
-	_pkgs_to_remove=('exodia-bspwm')
+	_pkgs_to_remove=('exodia-bspwm-predator')
 	_files_to_remove=("$HOME_DIR"/.config/bspwm)
 	_remove_for_wm
 
 }
 
-# Remove DWM #
-remove_dwm() {
+# Remove DWM Predator #
+remove_dwm_predator() {
 
 	# List Of Packages To Remove #
 	_pkgs_to_remove=(
 		
-		'exodia-dwm'
+		'exodia-dwm-predator'
 		'exodia-st' 
 	)
 
@@ -92,22 +92,22 @@ remove_dwm() {
 
 }
 
-# Remove i3  #
-remove_i3() {
+# Remove i3 Predator #
+remove_i3_predator() {
 
 	# List Of Packages To Remove #
-	_pkgs_to_remove=('exodia-i3wm')
+	_pkgs_to_remove=('exodia-i3wm-predator')
 	_files_to_remove=("$HOME_DIR"/.config/i3)
 	_remove_for_wm
 
 }
 
-# Install Bspwm #
-install_bspwm() {
+# Install Bspwm Predator #
+install_bspwm_predator() {
 	
 	echo "[*] Installing Bspwm Window Manager..."
-	remove_dwm
-	remove_i3
+	remove_dwm_predator
+	remove_i3_predator
 }
 
 ## Install Everything ----------
@@ -124,7 +124,7 @@ if [[ "$1" == '--bspwm' ]];
 	
 	then
 		
-		install_bspwm
+		install_bspwm_predator
 
 elif [[ "$1" == '--everything' ]];
 	

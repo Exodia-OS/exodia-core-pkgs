@@ -4,7 +4,7 @@
 
 pkgname="exodia-hooks"
 pkgver=1.0
-pkgrel=3
+pkgrel=4
 pkgdesc='Pacman hooks for Exodia OS to fix various system files'
 url="https://github.com/Exodia-OS/exodia-packages"
 arch=('any')
@@ -45,16 +45,16 @@ package() {
   local hooks=${pkgdir}/usr/share/libalpm/hooks
   local bin=${pkgdir}/usr/bin
 
-  install -Dm644 exodia-hooks.hook           		"$hooks"/exodia-hooks.hook
-  install -Dm644 exodia-lsb-release.hook      	"$hooks"/exodia-lsb-release.hook
-  install -Dm644 exodia-os-release.hook       	"$hooks"/exodia-os-release.hook
-  install -Dm644 exodia-reboot-required.hook  	"$hooks"/exodia-reboot-required.hook
-  install -Dm644 exodia-hook-nm.hook  			    "$hooks"/exodia-hook-nm.hook
-  install -Dm644 exodia-hook-thunar.hook  		  "$hooks"/exodia-hook-thunar.hook
-  install -Dm644 exodia-hook-zsh.hook  			    "$hooks"/exodia-hook-zsh.hook
-  install -Dm644 exodia-hook-grub.hook  			  "$hooks"/exodia-hook-grub.hook
+  install -Dm644 exodia-hooks.hook           		"${hooks}"/exodia-hooks.hook
+  install -Dm644 exodia-lsb-release.hook      	"${hooks}"/exodia-lsb-release.hook
+  install -Dm644 exodia-os-release.hook       	"${hooks}"/exodia-os-release.hook
+  install -Dm644 exodia-reboot-required.hook  	"${hooks}"/exodia-reboot-required.hook
+  install -Dm644 exodia-hook-nm.hook  			    "${hooks}"/exodia-hook-nm.hook
+  install -Dm644 exodia-hook-thunar.hook  		  "${hooks}"/exodia-hook-thunar.hook
+  install -Dm644 exodia-hook-zsh.hook  			    "${hooks}"/exodia-hook-zsh.hook
+  install -Dm644 exodia-hook-grub.hook  			  "${hooks}"/exodia-hook-grub.hook
 
-  install -Dm755 exodia-hooks-runner        		"$bin"/exodia-hooks-runner
-  install -Dm755 exodia-reboot-required       	"$bin"/exodia-reboot-required
-  install -Dm755 exodia-hooks-misc       		    "$bin"/exodia-hooks-misc
+  install -Dm755 exodia-hooks-runner        		"${bin}"/exodia-hooks-runner
+  install -Dm755 exodia-reboot-required       	"${bin}"/exodia-reboot-required
+  install -Dm755 exodia-hooks-misc       		    "${bin}"/exodia-hooks-misc
 }

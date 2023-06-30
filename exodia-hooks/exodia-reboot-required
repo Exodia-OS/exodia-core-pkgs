@@ -31,76 +31,107 @@ BBlue='\033[1;34m'  BPurple='\033[1;35m' BCyan='\033[1;36m'  BWhite='\033[1;37m'
 _notify_reboot_required() {
     local xx
 
-    for xx in "$DESKTOP_SESSION" "$XDG_CURRENT_DESKTOP" ; do
-        if [[ -n "$xx" ]] ; then
-            break
-        fi
+    for xx in "$DESKTOP_SESSION" "$XDG_CURRENT_DESKTOP";
+        
+        do
+            
+            if [[ -n "$xx" ]];
+                
+                then
+                    
+                    break
+
+            fi
     done
 
-    if [[ -n "$xx" ]] ; then
-        local user userid cmd
+    if [[ -n "$xx" ]];
+        
+        then
+            
+            local user userid cmd
 
-        for user in $(/usr/bin/users) ; do
-            userid=$(/usr/bin/id -u $user)
-            cmd=(DISPLAY=:0 DBUS_SESSION_ADDRESS=unix:path=/run/user/$userid/bus /usr/bin/notify-send)
-            cmd+=(--icon=system-reboot --urgency=critical)
-            cmd+=("\"Core system package upgraded, You need to reboot the machine.\"")
-            /usr/bin/su $user -c "${cmd[*]}"
-        done
+            for user in $(/usr/bin/users);
+                
+                do
+                    
+                    userid=$(/usr/bin/id -u $user)
+                    cmd=(DISPLAY=:0 DBUS_SESSION_ADDRESS=unix:path=/run/user/$userid/bus /usr/bin/notify-send)
+                    cmd+=(--icon=system-reboot --urgency=critical)
+                    cmd+=("\"Core system package upgraded, You need to reboot the machine.\"")
+                    /usr/bin/su $user -c "${cmd[*]}"
+
+            done
+
     else
+
         # at TTY
 		echo -e ${BRed}"\n[*] Core system package upgraded, You need to reboot the machine.\n"${Color_Off} >&2
+
     fi
+
 }
 
 RunningKernel() {
+
     cat /proc/cmdline | sed 's|.*/vmlinuz-\(linux[a-z0-9-]*\) .*|\1|'
+
 }
 
 main() {
-    local targets=$(tee /dev/null)  # targets from the hook (stdin)
+
+    # targets from the hook (stdin) #
+    local targets=$(tee /dev/null)
     local target
     local notify=no
     local runningKernel="$(RunningKernel)"
 
-    for target in $targets ; do
-        case "$target" in
-            linux | linux-lts | linux-zen | linux-hardened | linux-lts?? | linux-lts???)
-                # Note: only official and older LTS kernels are checked.
-                if [[ "$target" = "$runningKernel" ]] ; then
+    for target in $targets; 
+        
+        do
+            
+            case "$target" in
+                linux | linux-lts | linux-zen | linux-hardened | linux-lts?? | linux-lts???)
+                    # Note: only official and older LTS kernels are checked.
+                    if [[ "$target" = "$runningKernel" ]] ; then
+                        notify=yes
+                        break
+                    fi
+                    ;;
+                nvidia)
+                    if [[ "$runningKernel" = "linux" ]] ; then
+                        notify=yes
+                        break
+                    fi
+                    ;;
+                nvidia-lts)
+                    if [[ "$runningKernel" = "linux-lts" ]] ; then
+                        notify=yes
+                        break
+                    fi
+                    ;;
+                btrfs-progs)
+                    if [[ -n "$(/usr/bin/df -hT | awk '{print $2}' | grep -w btrfs)" ]] ; then
+                        notify=yes
+                        break
+                    fi
+                    ;;
+                *)
                     notify=yes
                     break
-                fi
-                ;;
-            nvidia)
-                if [[ "$runningKernel" = "linux" ]] ; then
-                    notify=yes
-                    break
-                fi
-                ;;
-            nvidia-lts)
-                if [[ "$runningKernel" = "linux-lts" ]] ; then
-                    notify=yes
-                    break
-                fi
-                ;;
-            btrfs-progs)
-                if [[ -n "$(/usr/bin/df -hT | awk '{print $2}' | grep -w btrfs)" ]] ; then
-                    notify=yes
-                    break
-                fi
-                ;;
-            *)
-                notify=yes
-                break
-                ;;
-        esac
+                    ;;
+            esac
+
     done
 
-    if [[ "$notify" = "yes" ]] ; then
-		_notify_reboot_required
-		unset -f _notify_reboot_required
+    if [[ "$notify" = "yes" ]];
+        
+        then
+		    
+            _notify_reboot_required
+		    unset -f _notify_reboot_required
+
     fi
+    
 }
 
 main "$@"

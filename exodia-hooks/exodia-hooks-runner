@@ -12,12 +12,18 @@
 # Run `exodia-hooks` related commands. #
 
 fix_lsb_release() {
+
     local file=/etc/lsb-release
 
-    if [[ -z "`grep "^DISTRIB_RELEASE=" $file`" ]] ; then
-        # add missing DISTRIB_RELEASE=
-        echo "DISTRIB_RELEASE=rolling" >> "$file"
+    if [[ -z "`grep "^DISTRIB_RELEASE=" $file`" ]];
+        
+        then
+            
+            # add missing DISTRIB_RELEASE= #
+            echo "DISTRIB_RELEASE=rolling" >> "$file"
+
     fi
+
     sed -i "$file" \
         -e 's|^DISTRIB_ID=.*$|DISTRIB_ID=exodia|' \
         -e 's|^DISTRIB_RELEASE=.*$|DISTRIB_RELEASE=rolling|' \
@@ -25,6 +31,7 @@ fix_lsb_release() {
 }
 
 fix_os_release() {
+
     local file=/usr/lib/os-release
 
     sed -i "$file" \
@@ -39,17 +46,22 @@ fix_os_release() {
         -e 's|^BUG_REPORT_URL=.*$|BUG_REPORT_URL=\"https://github.com/Exodia-OS/exodia-home-ISO/issues"|' \
         -e 's|^LOGO=.*$|LOGO=exodia|'
 
-    if [ -z "$(grep "^ID_LIKE=" $file)" ] && [ -n "$(grep "^ID=" $file)" ] ; then
-        # add missing ID_LIKE=
-        sed -i $file -e '/^ID=/a \ID_LIKE=arch'
+    if [ -z "$(grep "^ID_LIKE=" $file)" ] && [ -n "$(grep "^ID=" $file)" ];
+        
+        then
+            
+            # add missing ID_LIKE= #
+            sed -i $file -e '/^ID=/a \ID_LIKE=arch'
+
     fi
 
-	# fix issue file
+	# fix issue file #
     sed -i 's|Arch Linux|Exodia OS|g' /etc/issue /usr/share/factory/etc/issue
+
 }
 
-main()
-{
+main() {
+    
     local hookname="$1"
 
     case "$hookname" in
