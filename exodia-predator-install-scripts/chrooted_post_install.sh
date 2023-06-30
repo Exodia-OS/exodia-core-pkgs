@@ -325,7 +325,7 @@ _remove_unwanted_packages() {
 		
 		'exodia-predator-install-scripts'
 		'exodia-welcome'
-		'exodia-predator-calamares'
+		'exodia-calamares'
 		'calamares'
 		'archinstall'
 		'arch-install-scripts'
