@@ -1,0 +1,24 @@
+#
+# Maintainer: Mahmoud Mohamed (00xWolf) <mmsaeed509@gmail.com> , <https://github.com/mmsaeed509>
+#
+
+pkgname=exodia-doas
+pkgver=1.0
+pkgrel=1
+pkgdesc="doas config for Exodia OS"
+arch=('any')
+url="https://github.com/Exodia-OS/exodia-core-pkgs"
+license=('GPL')
+depends=('opendoas')
+install=${pkgname}.install
+source=("doasedit")
+sha256sums=('SKIP')
+
+package() {
+
+  local BIN_DIR=${pkgdir}/usr/local/bin
+  mkdir -p "${BIN_DIR}"
+  cp ${srcdir}/doasedit "${BIN_DIR}"
+  chmod +x "${BIN_DIR}"/doasedit
+
+}
