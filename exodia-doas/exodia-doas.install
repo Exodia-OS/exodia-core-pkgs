@@ -47,7 +47,7 @@ post_install() {
 
 post_remove() {
 
-	echo -e ${BRed} "\n[*] Removing config files and depends for ${BCyan}${PKG_NAME}${BRed}... " ${RESET_COLOR}
+	echo -e ${BRed} "\n[-] Removing config files and depends for ${BCyan}${PKG_NAME}${BRed}... " ${RESET_COLOR}
 
 	echo -e ${BRed} "   ==> Removing config file ${BPurple}/etc/doas.conf ${BRed} directory." ${RESET_COLOR}
 	rm  /etc/doas.conf
